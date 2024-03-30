@@ -1,0 +1,73 @@
+.ORIG x3000
+  AND R0, R0, #0    ; Clear R0
+  AND R1, R1, #0    ; Clear R1
+  AND R3, R3, #0    ; Clear R3
+  LEA R0, NUM       ; pointer [mem]NUM
+  ADD R1, R1, R0    ; Store the pointer address of R0 into R1
+
+FOR_LOOP
+  LDR R4, R1, #0    ; load the contents of mem address of R1 into R4
+  BRz END_LOOP
+  
+  STR R4, R1, #0    ; Store the new value in R4 into [mem] address R1
+  ADD R1, R1, #1    ; move our memory pointer down one
+  BRnzp FOR_LOOP    ; loop again until we get an x00 char
+END_LOOP
+
+
+  PUTs              ; print our string starting from [mem]address in R0
+HALT                ; Trap x25
+
+NUM   .fill  x41    ; Our Number to print
+      .fill  x42     
+      .fill  x43
+      .fill  x44
+      .fill  x45    
+      .fill  x46
+      .fill  x47
+      .fill  x48     
+      .fill  x49
+      .fill  x4A
+      .fill  x4B
+      .fill  x4C
+      .fill  x4D
+      .fill  x4E
+      .fill  x4F
+      .fill  x50
+      .fill  x51     
+      .fill  x52
+      .fill  x53
+      .fill  x54     
+      .fill  x55
+      .fill  x56
+      .fill  x57     
+      .fill  x58
+      .fill  x59
+      .fill  x5A
+      .fill  x5A     
+      .fill  x59
+      .fill  x58
+      .fill  x57    
+      .fill  x56
+      .fill  x55
+      .fill  x54     
+      .fill  x53
+      .fill  x52
+      .fill  x51
+      .fill  x50
+      .fill  x4F
+      .fill  x4E
+      .fill  x4D
+      .fill  x4C
+      .fill  x4B     
+      .fill  x4A
+      .fill  x49
+      .fill  x48     
+      .fill  x47
+      .fill  x46
+      .fill  x45     
+      .fill  x44
+      .fill  x43
+      .fill  x42
+      .fill  x41
+.END
